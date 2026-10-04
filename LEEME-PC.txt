@@ -1,0 +1,78 @@
+FLASHITO PARA PC — LEEME
+========================
+
+Que es
+------
+Flashito es una app chiquita que vive en la bandeja de Windows.
+Subrayas una pregunta (con sus opciones, si tiene), aprietas el atajo,
+y la respuesta aparece en una burbujita discreta abajo a la izquierda
+de la pantalla. No toma capturas: solo lee el texto que subrayaste.
+Funciona sobre cualquier navegador (Chrome, Edge, Firefox) y cualquier
+programa, porque es la app la que lee la seleccion, no el navegador.
+Es compatible con Windows 10 y Windows 11, tanto de 32 como de 64 bits.
+
+Instalacion
+-----------
+1. Extrae primero el ZIP completo y hace doble clic en "Instalar.bat".
+   Si Windows muestra SmartScreen, revisa que el archivo sea el paquete
+   que recibiste y elige "Mas informacion" -> "Ejecutar de todas formas".
+   Eso copia la app a %LOCALAPPDATA%\Flashito y hace que arranque
+   sola con Windows. Tambien crea un acceso directo en el escritorio.
+2. Se abre la ventana de configuracion:
+   - Endpoint: la API de IA que quieras usar (formato compatible OpenAI).
+     * OpenAI:     https://api.openai.com/v1/chat/completions   (modelo: gpt-4o-mini)
+     * OpenRouter: https://openrouter.ai/api/v1/chat/completions (modelo ej: google/gemini-flash-1.5)
+     * Groq:       https://api.groq.com/openai/v1/chat/completions
+     * Z.ai:       https://api.z.ai/api/paas/v4/chat/completions (modelo ej: glm-4-flash)
+   - API key: tu clave de ese proveedor (se guarda SOLO en tu PC,
+     en %APPDATA%\Flashito\config.json). No hay cuentas ni logins.
+   - Modelo: el nombre del modelo de tu proveedor.
+   - Atajo: por defecto Ctrl+Alt+F.
+3. Clic en "Probar conexion" para verificar, y "Guardar".
+
+Uso
+---
+- Subraya la pregunta (si tiene opciones A) B) C) D), incluyelas en la
+  seleccion, en cualquier orden/formato: "Cuanto es 2+2. Opcion A. 1
+  opcion B. 2 C. 3 D. 4" tambien funciona).
+- Apreta Ctrl+Alt+F (o el atajo que quedo configurado).
+- La respuesta aparece abajo a la izquierda: "D) 4".
+- La respuesta se cierra SOLA a los 2 segundos (muy sutil). Clic en
+  la burbuja la cierra al instante. Los errores duran 10 segundos
+  para que puedas leerlos.
+- Flashito queda como un iconito en la bandeja (junto al reloj):
+  doble clic = configuracion, clic derecho = salir.
+
+Notas
+-----
+- El atajo funciona global: no hace falta tocar la ventana de Flashito.
+- Si el atajo elegido ya lo usa otra app de tu PC, Flashito prueba
+  alternativas solo (Ctrl+Alt+G, H, J...), te avisa con un globo de
+  notificacion y guarda la que quedo. Tambien podes cambiarlo en
+  Configuracion.
+- Si subriste texto y no pasa nada, revisa que el programa donde
+  subriste permita copiar (Ctrl+C) — Flashito usa el portapapeles
+  para leer la seleccion y lo restaura despues.
+- Las selecciones muy largas se recortan a 1200 caracteres para que
+  el modelo responda rapido y gaste poco.
+- Para recompilar desde el codigo: doble clic en build.bat.
+
+Solucion de problemas
+---------------------
+- "Falta la API key" -> abri Configuracion (doble clic en el icono
+  de la bandeja) y completala.
+- "Error 402" -> te quedaste sin creditos en el proveedor:
+  OpenRouter: https://openrouter.ai/settings/credits
+  AIHubMix:   https://console.aihubmix.com/topup
+- "Error 429 / rate limited" -> el modelo gratis esta saturado en
+  ese momento; proba de nuevo o usa otro modelo.
+- Cualquier cosa rara: mirá %APPDATA%\Flashito\log.txt (ahí queda
+  todo lo que hace la app paso a paso).
+
+Proveedores de ejemplo
+----------------------
+OpenAI:      https://api.openai.com/v1/chat/completions        gpt-4o-mini
+OpenRouter:  https://openrouter.ai/api/v1/chat/completions     xiaomi/mimo-v2.6-pro
+AIHubMix:    https://api.aihubmix.com/v1/chat/completions      xiaomi-mimo-v2.6-pro-free
+             (el tier gratis de AIHubMix permite solo 10 intentos sin recargar)
+Groq:        https://api.groq.com/openai/v1/chat/completions   llama-3.1-8b-instant
